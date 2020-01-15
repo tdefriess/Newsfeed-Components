@@ -85,6 +85,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Norvrandt',
+    date: 'Seventh Astral Era',
+    firstParagraph: 'The Flood of Light rendered the vast majority of the First devoid of life, with Norvrandt remaining as the last bastion. Being a reflection of the Source, its climates and environs resemble those of Eorzea, though the cultures of its diverse range of inhabitants have taken an entirely different course over its troubled history.',
+    secondParagraph: 'A verdant region centered around the Source, the great lake whence it derives its name. Rich in aether, this land has long been held sacred by the elves, its original inhabitants. Nowadays, it falls under the aegis of the Crystarium, mankind’s final bastion in the war against sin eaters.',
+    thirdParagraph: "With its influence extending across the majority of the isle of Kholusia, this powerful military nation once stood firm against the onslaught of the sin eaters. Recent years have seen a drastic shift in Eulmore's position, with the wealthy upper classes turning their backs on the plight of the world, indulging in an endless parade of decadence and debauchery."
   }
 ];
 
@@ -112,3 +119,42 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const paragraphOne = document.createElement('p');
+  const paragraphTwo = document.createElement('p');
+  const paragraphThree = document.createElement('p');
+  const button = document.createElement('span');
+
+  article.append(articleTitle);
+  article.append(articleDate);
+  article.append(paragraphOne);
+  article.append(paragraphTwo);
+  article.append(paragraphThree);
+  article.append(button);
+  
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  button.classList.add('expandButton');
+
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  paragraphOne.textContent = firstParagraph;
+  paragraphTwo.textContent = secondParagraph;
+  paragraphThree.textContent = thirdParagraph;
+  button.textContent = 'x';
+
+  button.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  })
+
+  return article;
+}
+
+const container = document.querySelector('.articles');
+data.forEach(data => {
+  container.append(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+})
