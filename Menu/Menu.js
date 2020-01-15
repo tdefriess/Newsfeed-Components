@@ -34,6 +34,7 @@ let menuItems = [
   
 */
 
+
 function createMenu(data){
   const menu = document.createElement('div');
   const list = document.createElement('ul');
@@ -49,9 +50,14 @@ function createMenu(data){
   });
 
   const menuButton = document.querySelector('.menu-button');
-  menuButton.addEventListener('click', (event) => {
-    menu.classList.toggle('menu--open');
-    console.log(event);
+  menuButton.addEventListener('click', () => {    
+    if (!menu.classList.contains('menu--open')) {
+      gsap.to('.menu', {duration: 1, opacity: 100, x: '350'});
+      menu.classList.toggle('menu--open');
+    } else {
+      gsap.to('.menu', {duration: 1, opacity: 0, x: '-350'});
+      menu.classList.toggle('menu--open');
+    }
   })
   
   return menu;
