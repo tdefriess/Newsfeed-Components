@@ -11,6 +11,7 @@
   height: 50px;
   overflow: hidden;
   box-shadow: 2px 2px 2px lightgrey;
+  transition: height 1s;
 
   h2 {
     font-size: 28px;
@@ -39,12 +40,20 @@
     transform: translate(-50%);
     background-color: white;
   }
+
+  .closeButton {
+    color: red;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
 
 .article-open {
-  height: 400px;
+  height: 420px;
 }
 
-
+.article-close {  
+  display: none;
+}
 
 

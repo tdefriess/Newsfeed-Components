@@ -128,6 +128,7 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   const paragraphTwo = document.createElement('p');
   const paragraphThree = document.createElement('p');
   const button = document.createElement('span');
+  const buttonClose = document.createElement('span');
 
   article.append(articleTitle);
   article.append(articleDate);
@@ -135,20 +136,33 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   article.append(paragraphTwo);
   article.append(paragraphThree);
   article.append(button);
+  article.append(buttonClose);
   
   article.classList.add('article');
   articleDate.classList.add('date');
   button.classList.add('expandButton');
+  buttonClose.classList.add('closeButton');
 
   articleTitle.textContent = title;
   articleDate.textContent = date;
   paragraphOne.textContent = firstParagraph;
   paragraphTwo.textContent = secondParagraph;
   paragraphThree.textContent = thirdParagraph;
-  button.textContent = 'x';
+  button.textContent = 'Click to Expand';
+  buttonClose.textContent = 'Close';
 
   button.addEventListener('click', () => {
     article.classList.toggle('article-open');
+    if (article.classList.contains('article-open')){
+      button.textContent = 'Click to Collapse';
+    } else {
+      button.textContent = 'Click to Expand'
+    }
+  })
+
+  buttonClose.addEventListener('click', (event) => {
+    console.log(event.target);
+    article.classList.add('article-close');
   })
 
   return article;
